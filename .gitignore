@@ -105,3 +105,7 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Vuforia package cache
+/Packages/com.ptc.vuforia.engine-*.tgz
+/Library/PackageCache/com.ptc.vuforia.engine*
