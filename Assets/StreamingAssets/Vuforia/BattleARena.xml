@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="Target_Blastoise" size="0.063000 0.092466" />
+    <ImageTarget name="Target_Pikachu" size="0.063000 0.088947" />
+  </Tracking>
+</QCARConfig>
