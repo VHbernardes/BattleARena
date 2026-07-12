@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="golem-target" size="0.063000 0.096497" />
+    <ImageTarget name="pidgeotto-target" size="0.063000 0.093906" />
+    <ImageTarget name="venusaur-target" size="0.063000 0.086891" />
+    <ImageTarget name="charizard-target" size="0.063000 0.089801" />
     <ImageTarget name="Target_Blastoise" size="0.063000 0.092466" />
     <ImageTarget name="Target_Pikachu" size="0.063000 0.088947" />
   </Tracking>

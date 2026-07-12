@@ -12,11 +12,9 @@ namespace BattleARena.Battle
         [Header("Referências de UI")]
         public BattleHUD battleHUD;
 
-        [Header("Referências de Animação")]
-        [Tooltip("PokemonAnimator do modelo do jogador")]
-        public PokemonAnimator playerAnimator;
-        [Tooltip("PokemonAnimator do modelo do inimigo")]
-        public PokemonAnimator enemyAnimator;
+        // Animadores definidos dinamicamente pelo BattleSetupManager
+        private PokemonAnimator playerAnimator;
+        private PokemonAnimator enemyAnimator;
 
         private PokemonData playerPokemonData;
         private PokemonData enemyPokemonData;
@@ -24,8 +22,8 @@ namespace BattleARena.Battle
         private int playerCurrentHP;
         private int enemyCurrentHP;
 
-        private bool isPlayerTurn   = true;
-        private bool isBattleOver   = false;
+        private bool isPlayerTurn    = true;
+        private bool isBattleOver    = false;
         private bool isBattleRunning = false;
 
         void Awake()
@@ -34,14 +32,17 @@ namespace BattleARena.Battle
             Instance = this;
         }
 
-        // -------------------------------------------------------
-        // Setup Dinâmico
-        // -------------------------------------------------------
-
         public void SetPokemonData(PokemonData player, PokemonData enemy)
         {
             playerPokemonData = player;
             enemyPokemonData  = enemy;
+        }
+
+        /// <summary>Define os animadores dinamicamente — chamado pelo BattleSetupManager.</summary>
+        public void SetAnimators(PokemonAnimator player, PokemonAnimator enemy)
+        {
+            playerAnimator = player;
+            enemyAnimator  = enemy;
         }
 
         public void StartBattle()
@@ -67,10 +68,6 @@ namespace BattleARena.Battle
             battleHUD.SetButtonsInteractable(true);
             battleHUD.ShowMessage($"Batalha! {playerPokemonData.pokemonName} VS {enemyPokemonData.pokemonName}");
         }
-
-        // -------------------------------------------------------
-        // Ações do Jogador
-        // -------------------------------------------------------
 
         public void PlayerQuickAttack()
         {
@@ -98,37 +95,23 @@ namespace BattleARena.Battle
             StartCoroutine(PlayerAttackCoroutine(damage, isCrit, "Ataque Forte"));
         }
 
-        // -------------------------------------------------------
-        // Coroutines de Ataque com Animação
-        // -------------------------------------------------------
-
         private IEnumerator PlayerAttackCoroutine(int damage, bool isCrit, string attackName)
         {
             battleHUD.SetButtonsInteractable(false);
 
-            // Animação de ataque do jogador
-            if (playerAnimator != null)
-                playerAnimator.PlayAttack();
-
-            // Espera metade da animação de ataque antes de aplicar dano
+            if (playerAnimator != null) playerAnimator.PlayAttack();
             yield return new WaitForSeconds(0.25f);
+            if (enemyAnimator != null) enemyAnimator.PlayHit();
 
-            // Animação de hit no inimigo
-            if (enemyAnimator != null)
-                enemyAnimator.PlayHit();
-
-            // Aplica dano
             enemyCurrentHP = Mathf.Max(0, enemyCurrentHP - damage);
             string critText = isCrit ? " [CRITICO!]" : "";
             battleHUD.ShowMessage($"{playerPokemonData.pokemonName} usou {attackName}! -{damage} HP{critText}");
             battleHUD.UpdateHP(playerCurrentHP, enemyCurrentHP);
 
-            // Espera animação terminar
             yield return new WaitForSeconds(0.3f);
 
             if (enemyCurrentHP <= 0) { EndBattle(playerWon: true); yield break; }
 
-            // Turno da IA
             isPlayerTurn = false;
             StartCoroutine(EnemyTurnCoroutine());
         }
@@ -167,17 +150,10 @@ namespace BattleARena.Battle
                 attackName = "Ataque Rapido";
             }
 
-            // Animação de ataque do inimigo
-            if (enemyAnimator != null)
-                enemyAnimator.PlayAttack();
-
+            if (enemyAnimator != null) enemyAnimator.PlayAttack();
             yield return new WaitForSeconds(0.25f);
+            if (playerAnimator != null) playerAnimator.PlayHit();
 
-            // Animação de hit no jogador
-            if (playerAnimator != null)
-                playerAnimator.PlayHit();
-
-            // Aplica dano
             playerCurrentHP = Mathf.Max(0, playerCurrentHP - damage);
             string critText = isCrit ? " [CRITICO!]" : "";
             battleHUD.ShowMessage($"{enemyPokemonData.pokemonName} usou {attackName}! -{damage} HP{critText}");
@@ -192,10 +168,6 @@ namespace BattleARena.Battle
             battleHUD.ShowMessage($"Sua vez! {playerPokemonData.pokemonName} HP: {playerCurrentHP}");
         }
 
-        // -------------------------------------------------------
-        // Cálculo de Dano
-        // -------------------------------------------------------
-
         private int CalculateDamage(int minDmg, int maxDmg, float critChance, float critMult, out bool isCrit)
         {
             int baseDamage = Random.Range(minDmg, maxDmg + 1);
@@ -203,10 +175,6 @@ namespace BattleARena.Battle
             if (isCrit) baseDamage = Mathf.RoundToInt(baseDamage * critMult);
             return baseDamage;
         }
-
-        // -------------------------------------------------------
-        // Fim de Batalha
-        // -------------------------------------------------------
 
         private void EndBattle(bool playerWon)
         {
@@ -218,10 +186,6 @@ namespace BattleARena.Battle
                 ? $"VITORIA! {playerPokemonData.pokemonName} venceu!"
                 : $"DERROTA! {enemyPokemonData.pokemonName} venceu!");
         }
-
-        // -------------------------------------------------------
-        // Reiniciar
-        // -------------------------------------------------------
 
         public void RestartBattle()
         {

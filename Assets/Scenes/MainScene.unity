@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 0.7058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -231,19 +231,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4705893012016838412, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.06162846
+      value: -0.54167527
       objectReference: {fileID: 0}
     - target: {fileID: 4705893012016838412, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.06162846
+      value: 0.54167527
       objectReference: {fileID: 0}
     - target: {fileID: 4705893012016838412, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70441604
+      value: -0.45451948
       objectReference: {fileID: 0}
     - target: {fileID: 4705893012016838412, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.70441604
+      value: -0.45451948
       objectReference: {fileID: 0}
     - target: {fileID: 4705893012016838412, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -251,7 +251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4705893012016838412, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 4705893012016838412, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -414,6 +414,222 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &93851279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2007363083}
+    m_Modifications:
+    - target: {fileID: 8117721071605574281, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_Name
+      value: Venusaur
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.54167527
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.54167527
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.45451948
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.45451948
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -100
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8117721071605574281, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642154998}
+    - targetCorrespondingSourceObject: {fileID: 8117721071605574281, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642154997}
+  m_SourcePrefab: {fileID: 100100000, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+--- !u!1 &169235818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169235822}
+  - component: {fileID: 169235821}
+  - component: {fileID: 169235820}
+  - component: {fileID: 169235819}
+  - component: {fileID: 169235823}
+  m_Layer: 0
+  m_Name: ImageTarget_golem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &169235819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169235818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0395fd7e7a34462489c39791107c92bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.CardDetector
+  pokemonData: {fileID: 11400000, guid: b7e6bce8c78bed449867c9d2b649e758, type: 2}
+  pokemonModel: {fileID: 1519136441}
+  pokemonAnimator: {fileID: 0}
+--- !u!114 &169235820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169235818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VuforiaScripts::DefaultObserverEventHandler
+  StatusFilter: 1
+  UsePoseSmoothing: 0
+  AnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3.3333333
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 3.3333333
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  OnTargetFound:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &169235821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169235818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1631628248, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetBehaviour
+  PreviewVisible: 1
+  RuntimeOcclusion: 0
+  RuntimeCollider: 0
+  mTrackableName: golem-target
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/BattleARena.xml
+  mAspectRatio: 1.5316983
+  mImageTargetType: 0
+  mWidth: 0.063
+  mHeight: 0.096497
+  mRuntimeTexture: {fileID: 0}
+  mMotionHint: 1
+  mTrackingOptimization: 0
+  mTrackingOptimizationNeedsUpgrade: 0
+  mPreview: {fileID: 169235823}
+--- !u!4 &169235822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169235818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1519136444}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169235823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169235818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 169235821}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: golem-target
+  mDatasetName: Vuforia/BattleARena.xml
+  mCastedBehaviour: {fileID: 169235821}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &192121173
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +705,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192121173}
   m_CullTransparentMesh: 1
+--- !u!1 &235710166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2776076648609086400, guid: 1171539054d26b744a600350adf75229, type: 3}
+  m_PrefabInstance: {fileID: 756000945}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &235710167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235710166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc3647d530e95d48b3a87631c76abd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.PokemonSpawnAnimation
+  finalScale: {x: 0.005, y: 0.005, z: 0.005}
+  duration: 0.8
+  overshootAmount: 1.3
+  flashMaterial: {fileID: 2100000, guid: 67b4dabd38e4be048a7621f7df677806, type: 2}
+  flashDuration: 0.12
+--- !u!114 &235710168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235710166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e11734ba0eab0c4b8ac6a4adc8158f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Animation.PokemonAnimator
+  pokemonType: 2
+  idleBobSpeed: 1.5
+  idleBobAmount: 0.002
+  idleTiltAmount: 2
+  attackMoveDistance: 0.05
+  attackDuration: 0.5
+  attackDirection: {x: 0, y: 0, z: 1}
+  hitRecoilDistance: 0.02
+  hitDuration: 0.3
+--- !u!4 &235710169 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+  m_PrefabInstance: {fileID: 756000945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &237010270
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +1227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.CardDetector
   pokemonData: {fileID: 11400000, guid: 443e20f474e9e3c4d8944940c8e2685c, type: 2}
   pokemonModel: {fileID: 2130089926}
+  pokemonAnimator: {fileID: 0}
 --- !u!114 &265259416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,6 +1398,262 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554626906}
   m_CullTransparentMesh: 1
+--- !u!1 &642154996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8117721071605574281, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+  m_PrefabInstance: {fileID: 93851279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &642154997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642154996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc3647d530e95d48b3a87631c76abd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.PokemonSpawnAnimation
+  finalScale: {x: 0.005, y: 0.005, z: 0.005}
+  duration: 0.8
+  overshootAmount: 1.3
+  flashMaterial: {fileID: 2100000, guid: 67b4dabd38e4be048a7621f7df677806, type: 2}
+  flashDuration: 0.12
+--- !u!114 &642154998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642154996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e11734ba0eab0c4b8ac6a4adc8158f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Animation.PokemonAnimator
+  pokemonType: 1
+  idleBobSpeed: 1.5
+  idleBobAmount: 0.002
+  idleTiltAmount: 2
+  attackMoveDistance: 0.05
+  attackDuration: 0.5
+  attackDirection: {x: 0, y: 0, z: 1}
+  hitRecoilDistance: 0.02
+  hitDuration: 0.3
+--- !u!4 &642154999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8929548318358417459, guid: 7d76b5953ca2d57419cce59d02939738, type: 3}
+  m_PrefabInstance: {fileID: 93851279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &668128243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 668128247}
+  - component: {fileID: 668128246}
+  - component: {fileID: 668128245}
+  - component: {fileID: 668128244}
+  - component: {fileID: 668128248}
+  m_Layer: 0
+  m_Name: ImageTarget_charizard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &668128244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668128243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0395fd7e7a34462489c39791107c92bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.CardDetector
+  pokemonData: {fileID: 11400000, guid: a79a953496ac215478543815b331f1f5, type: 2}
+  pokemonModel: {fileID: 2007132528}
+  pokemonAnimator: {fileID: 0}
+--- !u!114 &668128245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668128243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VuforiaScripts::DefaultObserverEventHandler
+  StatusFilter: 1
+  UsePoseSmoothing: 0
+  AnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3.3333333
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 3.3333333
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  OnTargetFound:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &668128246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668128243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1631628248, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetBehaviour
+  PreviewVisible: 1
+  RuntimeOcclusion: 0
+  RuntimeCollider: 0
+  mTrackableName: charizard-target
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/BattleARena.xml
+  mAspectRatio: 1.4254127
+  mImageTargetType: 0
+  mWidth: 0.063
+  mHeight: 0.089801
+  mRuntimeTexture: {fileID: 0}
+  mMotionHint: 1
+  mTrackingOptimization: 0
+  mTrackingOptimizationNeedsUpgrade: 0
+  mPreview: {fileID: 668128248}
+--- !u!4 &668128247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668128243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2007132531}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &668128248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668128243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 668128246}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: charizard-target
+  mDatasetName: Vuforia/BattleARena.xml
+  mCastedBehaviour: {fileID: 668128246}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
+--- !u!1001 &756000945
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 764660419}
+    m_Modifications:
+    - target: {fileID: 2776076648609086400, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_Name
+      value: Pigeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.54167527
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.54167527
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.45451948
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.45451948
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300377306038116730, guid: 1171539054d26b744a600350adf75229, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -100
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2776076648609086400, guid: 1171539054d26b744a600350adf75229, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 235710168}
+    - targetCorrespondingSourceObject: {fileID: 2776076648609086400, guid: 1171539054d26b744a600350adf75229, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 235710167}
+  m_SourcePrefab: {fileID: 100100000, guid: 1171539054d26b744a600350adf75229, type: 3}
 --- !u!1 &759918736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,7 +1707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 0.7058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1211,6 +1732,147 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759918736}
   m_CullTransparentMesh: 1
+--- !u!1 &764660415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764660419}
+  - component: {fileID: 764660418}
+  - component: {fileID: 764660417}
+  - component: {fileID: 764660416}
+  - component: {fileID: 764660420}
+  m_Layer: 0
+  m_Name: ImageTarget_pidgeotto
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &764660416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764660415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0395fd7e7a34462489c39791107c92bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.CardDetector
+  pokemonData: {fileID: 11400000, guid: aedf33cbcc43fe04c81985fe6c40b365, type: 2}
+  pokemonModel: {fileID: 235710166}
+  pokemonAnimator: {fileID: 0}
+--- !u!114 &764660417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764660415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VuforiaScripts::DefaultObserverEventHandler
+  StatusFilter: 1
+  UsePoseSmoothing: 0
+  AnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3.3333333
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 3.3333333
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  OnTargetFound:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &764660418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764660415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1631628248, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetBehaviour
+  PreviewVisible: 1
+  RuntimeOcclusion: 0
+  RuntimeCollider: 0
+  mTrackableName: pidgeotto-target
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/BattleARena.xml
+  mAspectRatio: 1.4905714
+  mImageTargetType: 0
+  mWidth: 0.063
+  mHeight: 0.093906
+  mRuntimeTexture: {fileID: 0}
+  mMotionHint: 1
+  mTrackingOptimization: 0
+  mTrackingOptimizationNeedsUpgrade: 0
+  mPreview: {fileID: 764660420}
+--- !u!4 &764660419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764660415}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 235710169}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &764660420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764660415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 764660418}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: pidgeotto-target
+  mDatasetName: Vuforia/BattleARena.xml
+  mCastedBehaviour: {fileID: 764660418}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &826868562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +2344,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1055049250
 CanvasRenderer:
@@ -2018,6 +2680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.CardDetector
   pokemonData: {fileID: 11400000, guid: 27e1b6778e35b544b846bdb3945df59e, type: 2}
   pokemonModel: {fileID: 931225934}
+  pokemonAnimator: {fileID: 0}
 --- !u!114 &1131442771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2520,6 +3183,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353805599}
   m_CullTransparentMesh: 1
+--- !u!1001 &1385580251
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 169235822}
+    m_Modifications:
+    - target: {fileID: 3734526492322091389, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_Name
+      value: Golonya
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.54167527
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.54167527
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.45451948
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.45451948
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -100
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3734526492322091389, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1519136443}
+    - targetCorrespondingSourceObject: {fileID: 3734526492322091389, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1519136442}
+  m_SourcePrefab: {fileID: 100100000, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
 --- !u!1 &1394388533
 GameObject:
   m_ObjectHideFlags: 0
@@ -2736,6 +3466,54 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1519136441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3734526492322091389, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+  m_PrefabInstance: {fileID: 1385580251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1519136442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519136441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc3647d530e95d48b3a87631c76abd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.PokemonSpawnAnimation
+  finalScale: {x: 0.005, y: 0.005, z: 0.005}
+  duration: 0.8
+  overshootAmount: 1.3
+  flashMaterial: {fileID: 2100000, guid: 67b4dabd38e4be048a7621f7df677806, type: 2}
+  flashDuration: 0.12
+--- !u!114 &1519136443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519136441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e11734ba0eab0c4b8ac6a4adc8158f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Animation.PokemonAnimator
+  pokemonType: 0
+  idleBobSpeed: 1.5
+  idleBobAmount: 0.002
+  idleTiltAmount: 2
+  attackMoveDistance: 0.05
+  attackDuration: 0.5
+  attackDirection: {x: 0, y: 0, z: 1}
+  hitRecoilDistance: 0.02
+  hitDuration: 0.3
+--- !u!4 &1519136444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4078120111302806471, guid: 95204992867cdb24f98e7014da2bd3c1, type: 3}
+  m_PrefabInstance: {fileID: 1385580251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1541831951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2779,8 +3557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Battle.BattleManager
   battleHUD: {fileID: 962923596}
-  playerAnimator: {fileID: 2130089927}
-  enemyAnimator: {fileID: 1915644596}
 --- !u!4 &1541831954
 Transform:
   m_ObjectHideFlags: 0
@@ -3145,6 +3921,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &1792439925
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 668128247}
+    m_Modifications:
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.54167527
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.54167527
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.45451948
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.45451948
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842633185049537268, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      propertyPath: m_Name
+      value: Lizardon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6842633185049537268, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2007132530}
+    - targetCorrespondingSourceObject: {fileID: 6842633185049537268, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2007132529}
+  m_SourcePrefab: {fileID: 100100000, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
 --- !u!1 &1796555784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3304,19 +4155,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 612481970382883958, guid: 283e344feda7442498352c93467fef35, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70441604
+      value: -0.54167527
       objectReference: {fileID: 0}
     - target: {fileID: 612481970382883958, guid: 283e344feda7442498352c93467fef35, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.70441604
+      value: 0.54167527
       objectReference: {fileID: 0}
     - target: {fileID: 612481970382883958, guid: 283e344feda7442498352c93467fef35, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.06162843
+      value: -0.45451948
       objectReference: {fileID: 0}
     - target: {fileID: 612481970382883958, guid: 283e344feda7442498352c93467fef35, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.06162843
+      value: -0.45451948
       objectReference: {fileID: 0}
     - target: {fileID: 612481970382883958, guid: 283e344feda7442498352c93467fef35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3324,11 +4175,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 612481970382883958, guid: 283e344feda7442498352c93467fef35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 612481970382883958, guid: 283e344feda7442498352c93467fef35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 100
+      value: -100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3364,7 +4215,7 @@ MonoBehaviour:
   idleTiltAmount: 2
   attackMoveDistance: 0.05
   attackDuration: 0.5
-  attackDirection: {x: -1, y: 0, z: 0}
+  attackDirection: {x: 0, y: 0, z: 1}
   hitRecoilDistance: 0.02
   hitDuration: 0.3
 --- !u!114 &1915644597
@@ -3642,6 +4493,195 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2007132528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6842633185049537268, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+  m_PrefabInstance: {fileID: 1792439925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2007132529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc3647d530e95d48b3a87631c76abd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.PokemonSpawnAnimation
+  finalScale: {x: 0.005, y: 0.005, z: 0.005}
+  duration: 0.8
+  overshootAmount: 1.3
+  flashMaterial: {fileID: 2100000, guid: 67b4dabd38e4be048a7621f7df677806, type: 2}
+  flashDuration: 0.12
+--- !u!114 &2007132530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e11734ba0eab0c4b8ac6a4adc8158f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Animation.PokemonAnimator
+  pokemonType: 2
+  idleBobSpeed: 1.5
+  idleBobAmount: 0.002
+  idleTiltAmount: 2
+  attackMoveDistance: 0.05
+  attackDuration: 0.5
+  attackDirection: {x: 0, y: 0, z: 1}
+  hitRecoilDistance: 0.02
+  hitDuration: 0.3
+--- !u!4 &2007132531 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6178439563516391502, guid: 6094d22d087739d408cae60d23054a2b, type: 3}
+  m_PrefabInstance: {fileID: 1792439925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2007363079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007363083}
+  - component: {fileID: 2007363082}
+  - component: {fileID: 2007363081}
+  - component: {fileID: 2007363080}
+  - component: {fileID: 2007363084}
+  m_Layer: 0
+  m_Name: ImageTarget_venusaur
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2007363080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007363079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0395fd7e7a34462489c39791107c92bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.CardDetector
+  pokemonData: {fileID: 11400000, guid: 399704e327978ef4bb3f3c480eef2306, type: 2}
+  pokemonModel: {fileID: 642154996}
+  pokemonAnimator: {fileID: 0}
+--- !u!114 &2007363081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007363079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VuforiaScripts::DefaultObserverEventHandler
+  StatusFilter: 1
+  UsePoseSmoothing: 0
+  AnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3.3333333
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 3.3333333
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  OnTargetFound:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2007363082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007363079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1631628248, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetBehaviour
+  PreviewVisible: 1
+  RuntimeOcclusion: 0
+  RuntimeCollider: 0
+  mTrackableName: venusaur-target
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/BattleARena.xml
+  mAspectRatio: 1.3792223
+  mImageTargetType: 0
+  mWidth: 0.063
+  mHeight: 0.086891
+  mRuntimeTexture: {fileID: 0}
+  mMotionHint: 1
+  mTrackingOptimization: 0
+  mTrackingOptimizationNeedsUpgrade: 0
+  mPreview: {fileID: 2007363084}
+--- !u!4 &2007363083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007363079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 642154999}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2007363084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007363079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 2007363082}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: venusaur-target
+  mDatasetName: Vuforia/BattleARena.xml
+  mCastedBehaviour: {fileID: 2007363082}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &2024026778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3981,7 +5021,7 @@ MonoBehaviour:
   idleTiltAmount: 2
   attackMoveDistance: 0.05
   attackDuration: 0.5
-  attackDirection: {x: 1, y: 0, z: 0}
+  attackDirection: {x: 0, y: 0, z: 1}
   hitRecoilDistance: 0.02
   hitDuration: 0.3
 --- !u!114 &2130089928
@@ -4013,3 +5053,7 @@ SceneRoots:
   - {fileID: 1541831954}
   - {fileID: 962923600}
   - {fileID: 1921119915}
+  - {fileID: 668128247}
+  - {fileID: 2007363083}
+  - {fileID: 764660419}
+  - {fileID: 169235822}

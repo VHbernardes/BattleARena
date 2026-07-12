@@ -1,5 +1,6 @@
 using UnityEngine;
 using Vuforia;
+using BattleARena.Animation;
 
 namespace BattleARena.AR
 {
@@ -11,6 +12,9 @@ namespace BattleARena.AR
         [Tooltip("Modelo 3D filho deste Image Target")]
         public GameObject pokemonModel;
 
+        // Exposto para o BattleSetupManager pegar dinamicamente
+        [HideInInspector] public PokemonAnimator pokemonAnimator;
+
         private ObserverBehaviour observer;
         private bool hasBeenAssigned = false;
         private PokemonSpawnAnimation spawnAnimation;
@@ -21,11 +25,10 @@ namespace BattleARena.AR
             if (observer != null)
                 observer.OnTargetStatusChanged += OnTargetStatusChanged;
 
-            // Pega o componente de animação
             if (pokemonModel != null)
             {
-                spawnAnimation = pokemonModel.GetComponent<PokemonSpawnAnimation>();
-                // Começa invisível com scale zero
+                spawnAnimation  = pokemonModel.GetComponent<PokemonSpawnAnimation>();
+                pokemonAnimator = pokemonModel.GetComponent<PokemonAnimator>();
                 pokemonModel.transform.localScale = Vector3.zero;
                 pokemonModel.SetActive(false);
             }
@@ -48,7 +51,6 @@ namespace BattleARena.AR
                 if (assigned)
                 {
                     hasBeenAssigned = true;
-                    // Ativa o modelo e dispara a animação
                     if (pokemonModel != null)
                     {
                         pokemonModel.transform.localScale = Vector3.zero;
@@ -61,7 +63,6 @@ namespace BattleARena.AR
                 }
             }
 
-            // Depois de registrado, mostra/esconde com tracking
             if (hasBeenAssigned && pokemonModel != null)
             {
                 if (!isTracked)
