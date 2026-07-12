@@ -3,35 +3,32 @@ using Vuforia;
 
 namespace BattleARena.AR
 {
-    /// <summary>
-    /// Detecta quando uma carta entra no campo de visão e notifica
-    /// o BattleManager. A primeira carta detectada vira o jogador,
-    /// a segunda vira a IA.
-    /// </summary>
     public class CardDetector : MonoBehaviour
     {
-        public enum CardOwner { Player, Enemy }
+        [Header("Dados do Pokémon desta carta")]
+        public Battle.PokemonData pokemonData;
 
-        [Header("Configuração")]
-        [Tooltip("Define se essa carta pertence ao jogador ou à IA")]
-        public CardOwner cardOwner = CardOwner.Player;
-
-        [Tooltip("GameObject do Pokémon filho deste Image Target")]
+        [Tooltip("Modelo 3D filho deste Image Target")]
         public GameObject pokemonModel;
 
         private ObserverBehaviour observer;
+        private bool hasBeenAssigned = false;
+        private PokemonSpawnAnimation spawnAnimation;
 
         void Start()
         {
             observer = GetComponent<ObserverBehaviour>();
             if (observer != null)
-            {
                 observer.OnTargetStatusChanged += OnTargetStatusChanged;
-            }
 
-            // Começa invisível — aparece só quando a carta é detectada
+            // Pega o componente de animação
             if (pokemonModel != null)
+            {
+                spawnAnimation = pokemonModel.GetComponent<PokemonSpawnAnimation>();
+                // Começa invisível com scale zero
+                pokemonModel.transform.localScale = Vector3.zero;
                 pokemonModel.SetActive(false);
+            }
         }
 
         void OnDestroy()
@@ -45,12 +42,44 @@ namespace BattleARena.AR
             bool isTracked = status.Status == Status.TRACKED ||
                              status.Status == Status.EXTENDED_TRACKED;
 
-            if (pokemonModel != null)
-                pokemonModel.SetActive(isTracked);
-
-            if (isTracked)
+            if (isTracked && !hasBeenAssigned)
             {
-                Debug.Log($"[CardDetector] Carta detectada: {cardOwner}");
+                bool assigned = BattleSetupManager.Instance.RegisterCard(this);
+                if (assigned)
+                {
+                    hasBeenAssigned = true;
+                    // Ativa o modelo e dispara a animação
+                    if (pokemonModel != null)
+                    {
+                        pokemonModel.transform.localScale = Vector3.zero;
+                        pokemonModel.SetActive(true);
+                        if (spawnAnimation != null)
+                            pokemonModel.GetComponent<MonoBehaviour>().StartCoroutine(
+                                spawnAnimation.PlaySpawnAnimation()
+                            );
+                    }
+                }
+            }
+
+            // Depois de registrado, mostra/esconde com tracking
+            if (hasBeenAssigned && pokemonModel != null)
+            {
+                if (!isTracked)
+                    pokemonModel.SetActive(false);
+                else if (!pokemonModel.activeSelf)
+                    pokemonModel.SetActive(true);
+            }
+        }
+
+        public void Reset()
+        {
+            hasBeenAssigned = false;
+            if (pokemonModel != null)
+            {
+                pokemonModel.transform.localScale = Vector3.zero;
+                pokemonModel.SetActive(false);
+                if (spawnAnimation != null)
+                    spawnAnimation.ResetAnimation();
             }
         }
     }

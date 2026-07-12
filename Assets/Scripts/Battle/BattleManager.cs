@@ -1,61 +1,62 @@
 using UnityEngine;
 using System.Collections;
 using BattleARena.UI;
-using BattleARena.AI;
+using BattleARena.Animation;
 
 namespace BattleARena.Battle
 {
-    /// <summary>
-    /// Gerencia toda a lógica de batalha: HP, ataques, turnos e condição de vitória.
-    /// Deve existir como um único objeto na cena (Singleton).
-    /// </summary>
     public class BattleManager : MonoBehaviour
     {
         public static BattleManager Instance { get; private set; }
 
-        [Header("Dados dos Pokémon")]
-        public PokemonData playerPokemonData;
-        public PokemonData enemyPokemonData;
-
         [Header("Referências de UI")]
         public BattleHUD battleHUD;
 
-        [Header("Referências de IA")]
-        public AIController aiController;
+        [Header("Referências de Animação")]
+        [Tooltip("PokemonAnimator do modelo do jogador")]
+        public PokemonAnimator playerAnimator;
+        [Tooltip("PokemonAnimator do modelo do inimigo")]
+        public PokemonAnimator enemyAnimator;
 
-        // HP atual
+        private PokemonData playerPokemonData;
+        private PokemonData enemyPokemonData;
+
         private int playerCurrentHP;
         private int enemyCurrentHP;
 
-        // Controle de turno
-        private bool isPlayerTurn = true;
-        private bool isBattleOver = false;
-
-        // -------------------------------------------------------
-        // Inicialização
-        // -------------------------------------------------------
+        private bool isPlayerTurn   = true;
+        private bool isBattleOver   = false;
+        private bool isBattleRunning = false;
 
         void Awake()
         {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
+            if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
         }
 
-        void Start()
+        // -------------------------------------------------------
+        // Setup Dinâmico
+        // -------------------------------------------------------
+
+        public void SetPokemonData(PokemonData player, PokemonData enemy)
         {
-            InitializeBattle();
+            playerPokemonData = player;
+            enemyPokemonData  = enemy;
         }
 
-        private void InitializeBattle()
+        public void StartBattle()
         {
-            playerCurrentHP = playerPokemonData.baseHP;
-            enemyCurrentHP  = enemyPokemonData.baseHP;
-            isBattleOver    = false;
-            isPlayerTurn    = true;
+            if (playerPokemonData == null || enemyPokemonData == null)
+            {
+                Debug.LogError("[BattleManager] PokemonData não definido!");
+                return;
+            }
+
+            playerCurrentHP  = playerPokemonData.baseHP;
+            enemyCurrentHP   = enemyPokemonData.baseHP;
+            isBattleOver     = false;
+            isPlayerTurn     = true;
+            isBattleRunning  = true;
 
             battleHUD.Initialize(
                 playerPokemonData.pokemonName, playerPokemonData.baseHP,
@@ -64,19 +65,16 @@ namespace BattleARena.Battle
 
             battleHUD.UpdateHP(playerCurrentHP, enemyCurrentHP);
             battleHUD.SetButtonsInteractable(true);
-            battleHUD.ShowMessage($"Batalha iniciada! {playerPokemonData.pokemonName} VS {enemyPokemonData.pokemonName}");
-
-            Debug.Log("[BattleManager] Batalha inicializada.");
+            battleHUD.ShowMessage($"Batalha! {playerPokemonData.pokemonName} VS {enemyPokemonData.pokemonName}");
         }
 
         // -------------------------------------------------------
         // Ações do Jogador
         // -------------------------------------------------------
 
-        /// <summary>Chamado pelo botão "Ataque Rápido" na UI.</summary>
         public void PlayerQuickAttack()
         {
-            if (!isPlayerTurn || isBattleOver) return;
+            if (!isPlayerTurn || isBattleOver || !isBattleRunning) return;
             int damage = CalculateDamage(
                 playerPokemonData.quickAttackMinDamage,
                 playerPokemonData.quickAttackMaxDamage,
@@ -84,13 +82,12 @@ namespace BattleARena.Battle
                 playerPokemonData.criticalMultiplier,
                 out bool isCrit
             );
-            ApplyDamageToEnemy(damage, isCrit, "Ataque Rápido");
+            StartCoroutine(PlayerAttackCoroutine(damage, isCrit, "Ataque Rapido"));
         }
 
-        /// <summary>Chamado pelo botão "Ataque Forte" na UI.</summary>
         public void PlayerStrongAttack()
         {
-            if (!isPlayerTurn || isBattleOver) return;
+            if (!isPlayerTurn || isBattleOver || !isBattleRunning) return;
             int damage = CalculateDamage(
                 playerPokemonData.strongAttackMinDamage,
                 playerPokemonData.strongAttackMaxDamage,
@@ -98,67 +95,50 @@ namespace BattleARena.Battle
                 playerPokemonData.criticalMultiplier,
                 out bool isCrit
             );
-            ApplyDamageToEnemy(damage, isCrit, "Ataque Forte");
+            StartCoroutine(PlayerAttackCoroutine(damage, isCrit, "Ataque Forte"));
         }
 
         // -------------------------------------------------------
-        // Aplicar Dano
+        // Coroutines de Ataque com Animação
         // -------------------------------------------------------
 
-        private void ApplyDamageToEnemy(int damage, bool isCrit, string attackName)
+        private IEnumerator PlayerAttackCoroutine(int damage, bool isCrit, string attackName)
         {
+            battleHUD.SetButtonsInteractable(false);
+
+            // Animação de ataque do jogador
+            if (playerAnimator != null)
+                playerAnimator.PlayAttack();
+
+            // Espera metade da animação de ataque antes de aplicar dano
+            yield return new WaitForSeconds(0.25f);
+
+            // Animação de hit no inimigo
+            if (enemyAnimator != null)
+                enemyAnimator.PlayHit();
+
+            // Aplica dano
             enemyCurrentHP = Mathf.Max(0, enemyCurrentHP - damage);
-            string critText = isCrit ? " <color=yellow>[CRÍTICO!]</color>" : "";
+            string critText = isCrit ? " [CRITICO!]" : "";
             battleHUD.ShowMessage($"{playerPokemonData.pokemonName} usou {attackName}! -{damage} HP{critText}");
             battleHUD.UpdateHP(playerCurrentHP, enemyCurrentHP);
 
-            Debug.Log($"[BattleManager] Jogador atacou: {damage} de dano. HP inimigo: {enemyCurrentHP}");
+            // Espera animação terminar
+            yield return new WaitForSeconds(0.3f);
 
-            if (enemyCurrentHP <= 0)
-            {
-                EndBattle(playerWon: true);
-                return;
-            }
+            if (enemyCurrentHP <= 0) { EndBattle(playerWon: true); yield break; }
 
-            // Passa o turno pra IA
+            // Turno da IA
             isPlayerTurn = false;
-            battleHUD.SetButtonsInteractable(false);
             StartCoroutine(EnemyTurnCoroutine());
         }
 
-        private void ApplyDamageToPlayer(int damage, bool isCrit, string attackName)
-        {
-            playerCurrentHP = Mathf.Max(0, playerCurrentHP - damage);
-            string critText = isCrit ? " <color=yellow>[CRÍTICO!]</color>" : "";
-            battleHUD.ShowMessage($"{enemyPokemonData.pokemonName} usou {attackName}! -{damage} HP{critText}");
-            battleHUD.UpdateHP(playerCurrentHP, enemyCurrentHP);
-
-            Debug.Log($"[BattleManager] IA atacou: {damage} de dano. HP jogador: {playerCurrentHP}");
-
-            if (playerCurrentHP <= 0)
-            {
-                EndBattle(playerWon: false);
-                return;
-            }
-
-            // Devolve o turno pro jogador
-            isPlayerTurn = true;
-            battleHUD.SetButtonsInteractable(true);
-            battleHUD.ShowMessage($"Sua vez! {playerPokemonData.pokemonName} HP: {playerCurrentHP}");
-        }
-
-        // -------------------------------------------------------
-        // Turno da IA
-        // -------------------------------------------------------
-
         private IEnumerator EnemyTurnCoroutine()
         {
-            battleHUD.ShowMessage($"{enemyPokemonData.pokemonName} está preparando ataque...");
+            battleHUD.ShowMessage($"{enemyPokemonData.pokemonName} esta preparando ataque...");
             yield return new WaitForSeconds(enemyPokemonData.aiAttackDelay);
-
             if (isBattleOver) yield break;
 
-            // IA escolhe ataque: 60% Rápido, 40% Forte
             bool useStrong = Random.value < 0.4f;
             int damage;
             bool isCrit;
@@ -184,10 +164,32 @@ namespace BattleARena.Battle
                     enemyPokemonData.criticalMultiplier,
                     out isCrit
                 );
-                attackName = "Ataque Rápido";
+                attackName = "Ataque Rapido";
             }
 
-            ApplyDamageToPlayer(damage, isCrit, attackName);
+            // Animação de ataque do inimigo
+            if (enemyAnimator != null)
+                enemyAnimator.PlayAttack();
+
+            yield return new WaitForSeconds(0.25f);
+
+            // Animação de hit no jogador
+            if (playerAnimator != null)
+                playerAnimator.PlayHit();
+
+            // Aplica dano
+            playerCurrentHP = Mathf.Max(0, playerCurrentHP - damage);
+            string critText = isCrit ? " [CRITICO!]" : "";
+            battleHUD.ShowMessage($"{enemyPokemonData.pokemonName} usou {attackName}! -{damage} HP{critText}");
+            battleHUD.UpdateHP(playerCurrentHP, enemyCurrentHP);
+
+            yield return new WaitForSeconds(0.3f);
+
+            if (playerCurrentHP <= 0) { EndBattle(playerWon: false); yield break; }
+
+            isPlayerTurn = true;
+            battleHUD.SetButtonsInteractable(true);
+            battleHUD.ShowMessage($"Sua vez! {playerPokemonData.pokemonName} HP: {playerCurrentHP}");
         }
 
         // -------------------------------------------------------
@@ -198,8 +200,7 @@ namespace BattleARena.Battle
         {
             int baseDamage = Random.Range(minDmg, maxDmg + 1);
             isCrit = Random.value < critChance;
-            if (isCrit)
-                baseDamage = Mathf.RoundToInt(baseDamage * critMult);
+            if (isCrit) baseDamage = Mathf.RoundToInt(baseDamage * critMult);
             return baseDamage;
         }
 
@@ -209,30 +210,23 @@ namespace BattleARena.Battle
 
         private void EndBattle(bool playerWon)
         {
-            isBattleOver = true;
+            isBattleOver    = true;
+            isBattleRunning = false;
             battleHUD.SetButtonsInteractable(false);
-
-            if (playerWon)
-            {
-                battleHUD.ShowMessage($"🏆 {playerPokemonData.pokemonName} venceu!");
-                battleHUD.ShowVictoryScreen(true);
-                Debug.Log("[BattleManager] Jogador venceu!");
-            }
-            else
-            {
-                battleHUD.ShowMessage($"💀 {enemyPokemonData.pokemonName} venceu!");
-                battleHUD.ShowVictoryScreen(false);
-                Debug.Log("[BattleManager] IA venceu!");
-            }
+            battleHUD.ShowVictoryScreen(playerWon);
+            battleHUD.ShowMessage(playerWon
+                ? $"VITORIA! {playerPokemonData.pokemonName} venceu!"
+                : $"DERROTA! {enemyPokemonData.pokemonName} venceu!");
         }
 
         // -------------------------------------------------------
-        // Reiniciar Batalha
+        // Reiniciar
         // -------------------------------------------------------
 
         public void RestartBattle()
         {
-            InitializeBattle();
+            isBattleRunning = false;
+            AR.BattleSetupManager.Instance.ResetSetup();
         }
     }
 }

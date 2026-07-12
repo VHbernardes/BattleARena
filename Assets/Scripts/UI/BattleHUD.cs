@@ -4,12 +4,12 @@ using TMPro;
 
 namespace BattleARena.UI
 {
-    /// <summary>
-    /// Controla todos os elementos visuais da HUD de batalha:
-    /// barras de HP, mensagens, botões e tela de vitória/derrota.
-    /// </summary>
     public class BattleHUD : MonoBehaviour
     {
+        [Header("Tela de Scan (antes da batalha)")]
+        public GameObject scanScreen;
+        public TextMeshProUGUI scanMessageText;
+
         [Header("HP do Jogador")]
         public Slider playerHPSlider;
         public TextMeshProUGUI playerHPText;
@@ -34,14 +34,39 @@ namespace BattleARena.UI
         public TextMeshProUGUI victoryText;
         public Button restartButton;
 
-        // Cores da barra de HP
-        private readonly Color colorHigh   = new Color(0.2f, 0.8f, 0.2f); // Verde
-        private readonly Color colorMedium = new Color(1.0f, 0.8f, 0.0f); // Amarelo
-        private readonly Color colorLow    = new Color(0.9f, 0.1f, 0.1f); // Vermelho
+        private readonly Color colorHigh   = new Color(0.2f, 0.8f, 0.2f);
+        private readonly Color colorMedium = new Color(1.0f, 0.8f, 0.0f);
+        private readonly Color colorLow    = new Color(0.9f, 0.1f, 0.1f);
 
-        // HP máximo (guardado para calcular percentual)
         private int playerMaxHP;
         private int enemyMaxHP;
+        private bool isInScanPhase = true;
+
+        // -------------------------------------------------------
+        // Tela de Scan
+        // -------------------------------------------------------
+
+        public void ShowScanScreen(bool show)
+        {
+            isInScanPhase = show;
+
+            if (scanScreen != null)
+                scanScreen.SetActive(show);
+
+            // Esconde painéis de HP e botões durante scan
+            if (playerHPSlider != null)
+                playerHPSlider.transform.parent.gameObject.SetActive(!show);
+            if (enemyHPSlider != null)
+                enemyHPSlider.transform.parent.gameObject.SetActive(!show);
+            if (battleMessageText != null)
+                battleMessageText.gameObject.SetActive(!show);
+
+            // Esconde botões durante scan
+            if (quickAttackButton != null)
+                quickAttackButton.gameObject.SetActive(!show);
+            if (strongAttackButton != null)
+                strongAttackButton.gameObject.SetActive(!show);
+        }
 
         // -------------------------------------------------------
         // Inicialização
@@ -61,7 +86,6 @@ namespace BattleARena.UI
             if (victoryScreen != null)
                 victoryScreen.SetActive(false);
 
-            // Conecta botões ao BattleManager
             quickAttackButton.onClick.RemoveAllListeners();
             strongAttackButton.onClick.RemoveAllListeners();
             quickAttackButton.onClick.AddListener(Battle.BattleManager.Instance.PlayerQuickAttack);
@@ -77,12 +101,10 @@ namespace BattleARena.UI
 
         public void UpdateHP(int playerHP, int enemyHP)
         {
-            // Jogador
             playerHPSlider.value = playerHP;
             playerHPText.text    = $"{playerHP} / {playerMaxHP}";
             UpdateHPBarColor(playerHPFill, playerHP, playerMaxHP);
 
-            // Inimigo
             enemyHPSlider.value = enemyHP;
             enemyHPText.text    = $"{enemyHP} / {enemyMaxHP}";
             UpdateHPBarColor(enemyHPFill, enemyHP, enemyMaxHP);
@@ -92,23 +114,34 @@ namespace BattleARena.UI
         {
             if (fill == null) return;
             float ratio = (float)current / max;
-            if      (ratio > 0.5f) fill.color = colorHigh;
+            if      (ratio > 0.5f)  fill.color = colorHigh;
             else if (ratio > 0.25f) fill.color = colorMedium;
             else                    fill.color = colorLow;
         }
 
         // -------------------------------------------------------
-        // Mensagem de Batalha
+        // Mensagens — separadas por fase
         // -------------------------------------------------------
 
+        /// <summary>Mostra mensagem na fase correta (scan ou batalha).</summary>
         public void ShowMessage(string message)
         {
-            if (battleMessageText != null)
-                battleMessageText.text = message;
+            if (isInScanPhase)
+            {
+                // Durante scan: só o ScanMessageText
+                if (scanMessageText != null)
+                    scanMessageText.text = message;
+            }
+            else
+            {
+                // Durante batalha: só o BattleMessageText
+                if (battleMessageText != null)
+                    battleMessageText.text = message;
+            }
         }
 
         // -------------------------------------------------------
-        // Controle dos Botões
+        // Botões
         // -------------------------------------------------------
 
         public void SetButtonsInteractable(bool interactable)
@@ -118,16 +151,15 @@ namespace BattleARena.UI
         }
 
         // -------------------------------------------------------
-        // Tela de Vitória/Derrota
+        // Vitória/Derrota
         // -------------------------------------------------------
 
         public void ShowVictoryScreen(bool playerWon)
         {
             if (victoryScreen == null) return;
             victoryScreen.SetActive(true);
-            victoryText.text = playerWon
-                ? "🏆 VITÓRIA!"
-                : "💀 DERROTA!";
+            if (victoryText != null)
+                victoryText.text = playerWon ? "VITORIA!" : "DERROTA!";
         }
     }
 }

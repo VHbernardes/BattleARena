@@ -264,7 +264,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5333775361114238390, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2130089928}
+    - targetCorrespondingSourceObject: {fileID: 5333775361114238390, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2130089927}
   m_SourcePrefab: {fileID: 100100000, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
 --- !u!4 &42369145 stripped
 Transform:
@@ -847,8 +853,8 @@ GameObject:
   - component: {fileID: 265259414}
   - component: {fileID: 265259413}
   - component: {fileID: 265259412}
-  - component: {fileID: 265259411}
   - component: {fileID: 265259415}
+  - component: {fileID: 265259416}
   m_Layer: 0
   m_Name: ImageTarget_pikachu
   m_TagString: Untagged
@@ -856,25 +862,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &265259411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265259410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 265259413}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: Target_Pikachu
-  mDatasetName: Vuforia/BattleARena.xml
-  mCastedBehaviour: {fileID: 265259413}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &265259412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,7 +932,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 265259411}
+  mPreview: {fileID: 265259416}
 --- !u!4 &265259414
 Transform:
   m_ObjectHideFlags: 0
@@ -974,8 +961,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0395fd7e7a34462489c39791107c92bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.CardDetector
-  cardOwner: 0
+  pokemonData: {fileID: 11400000, guid: 443e20f474e9e3c4d8944940c8e2685c, type: 2}
   pokemonModel: {fileID: 2130089926}
+--- !u!114 &265259416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265259410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 265259413}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: Target_Pikachu
+  mDatasetName: Vuforia/BattleARena.xml
+  mCastedBehaviour: {fileID: 265259413}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
+--- !u!1 &446786591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446786592}
+  - component: {fileID: 446786594}
+  - component: {fileID: 446786593}
+  m_Layer: 5
+  m_Name: ScanScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &446786592
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446786591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1055049249}
+  m_Father: {fileID: 962923600}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &446786593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446786591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &446786594
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446786591}
+  m_CullTransparentMesh: 1
 --- !u!1 &554626906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494976ffda9694646bd0684d4a802ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.UI.BattleHUD
+  scanScreen: {fileID: 446786591}
+  scanMessageText: {fileID: 1055049251}
   playerHPSlider: {fileID: 1394388535}
   playerHPText: {fileID: 1735085601}
   playerNameText: {fileID: 244668903}
@@ -1434,6 +1518,7 @@ RectTransform:
   - {fileID: 1796555788}
   - {fileID: 81519469}
   - {fileID: 1093084695}
+  - {fileID: 446786592}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1562,6 +1647,143 @@ RectTransform:
   m_AnchoredPosition: {x: -220, y: 60}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0}
+--- !u!1 &1055049248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1055049249}
+  - component: {fileID: 1055049250}
+  - component: {fileID: 1055049251}
+  m_Layer: 5
+  m_Name: 'ScanMessageText '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1055049249
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055049248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 446786592}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1055049250
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055049248}
+  m_CullTransparentMesh: 1
+--- !u!114 &1055049251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055049248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Aponte a camera para a sua carta!
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1075431065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,8 +1908,8 @@ GameObject:
   - component: {fileID: 1131442769}
   - component: {fileID: 1131442768}
   - component: {fileID: 1131442767}
-  - component: {fileID: 1131442766}
   - component: {fileID: 1131442770}
+  - component: {fileID: 1131442771}
   m_Layer: 0
   m_Name: ImageTarget_blastoise
   m_TagString: Untagged
@@ -1695,25 +1917,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1131442766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131442765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 1131442768}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: Target_Blastoise
-  mDatasetName: Vuforia/BattleARena.xml
-  mCastedBehaviour: {fileID: 1131442768}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1131442767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1784,7 +1987,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1131442766}
+  mPreview: {fileID: 1131442771}
 --- !u!4 &1131442769
 Transform:
   m_ObjectHideFlags: 0
@@ -1813,8 +2016,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0395fd7e7a34462489c39791107c92bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.CardDetector
-  cardOwner: 1
+  pokemonData: {fileID: 11400000, guid: 27e1b6778e35b544b846bdb3945df59e, type: 2}
   pokemonModel: {fileID: 931225934}
+--- !u!114 &1131442771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131442765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 1131442768}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: Target_Blastoise
+  mDatasetName: Vuforia/BattleARena.xml
+  mCastedBehaviour: {fileID: 1131442768}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &1153040869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,7 +2275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"180 / 180"'
+  m_text: 180 / 180
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2556,10 +2778,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72ac454dacaec044960420334564b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Battle.BattleManager
-  playerPokemonData: {fileID: 11400000, guid: 443e20f474e9e3c4d8944940c8e2685c, type: 2}
-  enemyPokemonData: {fileID: 11400000, guid: 27e1b6778e35b544b846bdb3945df59e, type: 2}
   battleHUD: {fileID: 962923596}
-  aiController: {fileID: 1541831952}
+  playerAnimator: {fileID: 2130089927}
+  enemyAnimator: {fileID: 1915644596}
 --- !u!4 &1541831954
 Transform:
   m_ObjectHideFlags: 0
@@ -2852,7 +3073,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"100 / 100"'
+  m_text: 100 / 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3112,13 +3333,103 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 230855351131477708, guid: 283e344feda7442498352c93467fef35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1915644597}
+    - targetCorrespondingSourceObject: {fileID: 230855351131477708, guid: 283e344feda7442498352c93467fef35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1915644596}
   m_SourcePrefab: {fileID: 100100000, guid: 283e344feda7442498352c93467fef35, type: 3}
 --- !u!4 &1915644595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 612481970382883958, guid: 283e344feda7442498352c93467fef35, type: 3}
   m_PrefabInstance: {fileID: 1915644594}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1915644596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931225934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e11734ba0eab0c4b8ac6a4adc8158f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Animation.PokemonAnimator
+  pokemonType: 0
+  idleBobSpeed: 1.5
+  idleBobAmount: 0.002
+  idleTiltAmount: 2
+  attackMoveDistance: 0.05
+  attackDuration: 0.5
+  attackDirection: {x: -1, y: 0, z: 0}
+  hitRecoilDistance: 0.02
+  hitDuration: 0.3
+--- !u!114 &1915644597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931225934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc3647d530e95d48b3a87631c76abd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.PokemonSpawnAnimation
+  finalScale: {x: 0.005, y: 0.005, z: 0.005}
+  duration: 0.8
+  overshootAmount: 1.3
+  flashMaterial: {fileID: 2100000, guid: 67b4dabd38e4be048a7621f7df677806, type: 2}
+  flashDuration: 0.12
+--- !u!1 &1921119913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1921119915}
+  - component: {fileID: 1921119914}
+  m_Layer: 0
+  m_Name: BattleSetupManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1921119914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921119913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e44972de74f524a82c2d2ab44945d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.BattleSetupManager
+  battleManager: {fileID: 1541831953}
+  battleHUD: {fileID: 962923596}
+--- !u!4 &1921119915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921119913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1921684110
 GameObject:
   m_ObjectHideFlags: 0
@@ -3652,6 +3963,44 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5333775361114238390, guid: 44a3598fb046d854cb7581fb7481c95e, type: 3}
   m_PrefabInstance: {fileID: 42369144}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2130089927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130089926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e11734ba0eab0c4b8ac6a4adc8158f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Animation.PokemonAnimator
+  pokemonType: 0
+  idleBobSpeed: 1.5
+  idleBobAmount: 0.002
+  idleTiltAmount: 2
+  attackMoveDistance: 0.05
+  attackDuration: 0.5
+  attackDirection: {x: 1, y: 0, z: 0}
+  hitRecoilDistance: 0.02
+  hitDuration: 0.3
+--- !u!114 &2130089928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130089926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc3647d530e95d48b3a87631c76abd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.AR.PokemonSpawnAnimation
+  finalScale: {x: 0.01, y: 0.01, z: 0.01}
+  duration: 0.8
+  overshootAmount: 1.3
+  flashMaterial: {fileID: 2100000, guid: 67b4dabd38e4be048a7621f7df677806, type: 2}
+  flashDuration: 0.12
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3663,3 +4012,4 @@ SceneRoots:
   - {fileID: 1131442769}
   - {fileID: 1541831954}
   - {fileID: 962923600}
+  - {fileID: 1921119915}
