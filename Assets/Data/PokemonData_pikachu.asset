@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Battle.PokemonData
   pokemonName: Pikachu
   icon: {fileID: 0}
+  tipo: 3
   baseHP: 100
   quickAttackMinDamage: 10
   quickAttackMaxDamage: 14

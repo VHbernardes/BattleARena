@@ -12,7 +12,6 @@ namespace BattleARena.AR
         [Tooltip("Modelo 3D filho deste Image Target")]
         public GameObject pokemonModel;
 
-        // Exposto para o BattleSetupManager pegar dinamicamente
         [HideInInspector] public PokemonAnimator pokemonAnimator;
 
         private ObserverBehaviour observer;
@@ -75,12 +74,24 @@ namespace BattleARena.AR
         public void Reset()
         {
             hasBeenAssigned = false;
+
             if (pokemonModel != null)
             {
-                pokemonModel.transform.localScale = Vector3.zero;
-                pokemonModel.SetActive(false);
+                // ResetState restaura posição, rotação e scale originais
+                if (pokemonAnimator != null)
+                    pokemonAnimator.ResetState();
+
+                // Reseta animação de spawn
                 if (spawnAnimation != null)
                     spawnAnimation.ResetAnimation();
+
+                // Reseta cor de todos os renderers
+                foreach (var r in pokemonModel.GetComponentsInChildren<Renderer>())
+                    r.material.SetColor("_Color", Color.white);
+
+                // Esconde o modelo
+                pokemonModel.transform.localScale = Vector3.zero;
+                pokemonModel.SetActive(false);
             }
         }
     }

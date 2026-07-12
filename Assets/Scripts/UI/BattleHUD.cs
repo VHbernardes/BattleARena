@@ -50,22 +50,29 @@ namespace BattleARena.UI
         {
             isInScanPhase = show;
 
+            // Scan screen
             if (scanScreen != null)
                 scanScreen.SetActive(show);
 
-            // Esconde painéis de HP e botões durante scan
+            // Painéis de HP — só durante batalha
             if (playerHPSlider != null)
                 playerHPSlider.transform.parent.gameObject.SetActive(!show);
             if (enemyHPSlider != null)
                 enemyHPSlider.transform.parent.gameObject.SetActive(!show);
+
+            // Mensagem de batalha — só durante batalha
             if (battleMessageText != null)
                 battleMessageText.gameObject.SetActive(!show);
 
-            // Esconde botões durante scan
+            // Botões — só durante batalha
             if (quickAttackButton != null)
                 quickAttackButton.gameObject.SetActive(!show);
             if (strongAttackButton != null)
                 strongAttackButton.gameObject.SetActive(!show);
+
+            // Garante que VictoryScreen está escondido ao voltar pro scan
+            if (show && victoryScreen != null)
+                victoryScreen.SetActive(false);
         }
 
         // -------------------------------------------------------
@@ -92,7 +99,10 @@ namespace BattleARena.UI
             strongAttackButton.onClick.AddListener(Battle.BattleManager.Instance.PlayerStrongAttack);
 
             if (restartButton != null)
+            {
+                restartButton.onClick.RemoveAllListeners();
                 restartButton.onClick.AddListener(Battle.BattleManager.Instance.RestartBattle);
+            }
         }
 
         // -------------------------------------------------------
@@ -120,21 +130,18 @@ namespace BattleARena.UI
         }
 
         // -------------------------------------------------------
-        // Mensagens — separadas por fase
+        // Mensagens
         // -------------------------------------------------------
 
-        /// <summary>Mostra mensagem na fase correta (scan ou batalha).</summary>
         public void ShowMessage(string message)
         {
             if (isInScanPhase)
             {
-                // Durante scan: só o ScanMessageText
                 if (scanMessageText != null)
                     scanMessageText.text = message;
             }
             else
             {
-                // Durante batalha: só o BattleMessageText
                 if (battleMessageText != null)
                     battleMessageText.text = message;
             }

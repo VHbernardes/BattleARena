@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Battle.PokemonData
   pokemonName: Venusaur
   icon: {fileID: 0}
+  tipo: 1
   baseHP: 170
   quickAttackMinDamage: 8
   quickAttackMaxDamage: 12

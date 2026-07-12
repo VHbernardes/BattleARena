@@ -3,10 +3,6 @@ using System.Collections;
 
 namespace BattleARena.Animation
 {
-    /// <summary>
-    /// Controla todas as animações de batalha do Pokémon via código.
-    /// Funciona sem rig ou clips de animação — usa Transform puro.
-    /// </summary>
     public class PokemonAnimator : MonoBehaviour
     {
         public enum PokemonType { Biped, Quadruped, Flying }
@@ -15,22 +11,25 @@ namespace BattleARena.Animation
         public PokemonType pokemonType = PokemonType.Biped;
 
         [Header("Configuração de Idle")]
-        public float idleBobSpeed    = 1.5f;   // velocidade do balanço
-        public float idleBobAmount   = 0.002f; // amplitude do balanço Y
-        public float idleTiltAmount  = 2f;     // graus de inclinação lateral
+        public float idleBobSpeed   = 1.5f;
+        public float idleBobAmount  = 0.002f;
+        public float idleTiltAmount = 2f;
 
         [Header("Configuração de Ataque")]
-        public float attackMoveDistance = 0.05f; // distância que avança
-        public float attackDuration     = 0.5f;  // duração total do ataque
-        public Vector3 attackDirection  = Vector3.forward; // direção do ataque
+        public float attackMoveDistance = 0.05f;
+        public float attackDuration     = 0.5f;
+        public Vector3 attackDirection  = Vector3.forward;
 
         [Header("Configuração de Hit")]
-        public float hitRecoilDistance = 0.02f; // distância que recua
+        public float hitRecoilDistance = 0.02f;
         public float hitDuration       = 0.3f;
 
-        // Estado interno
+        [Header("Configuração de Morte")]
+        public float deathDuration = 1.2f;
+
         private Vector3 originalLocalPosition;
         private Quaternion originalLocalRotation;
+        private Vector3 originalLocalScale;
         private bool isPlayingAction = false;
         private Coroutine idleCoroutine;
 
@@ -38,6 +37,7 @@ namespace BattleARena.Animation
         {
             originalLocalPosition = transform.localPosition;
             originalLocalRotation = transform.localRotation;
+            originalLocalScale    = transform.localScale;
             StartIdle();
         }
 
@@ -47,24 +47,24 @@ namespace BattleARena.Animation
 
         public void StartIdle()
         {
-            if (idleCoroutine != null)
-                StopCoroutine(idleCoroutine);
-
+            if (idleCoroutine != null) StopCoroutine(idleCoroutine);
             switch (pokemonType)
             {
-                case PokemonType.Biped:
-                    idleCoroutine = StartCoroutine(IdleBipedCoroutine());
-                    break;
-                case PokemonType.Quadruped:
-                    idleCoroutine = StartCoroutine(IdleQuadrupedCoroutine());
-                    break;
-                case PokemonType.Flying:
-                    idleCoroutine = StartCoroutine(IdleFlyingCoroutine());
-                    break;
+                case PokemonType.Biped:     idleCoroutine = StartCoroutine(IdleBipedCoroutine());     break;
+                case PokemonType.Quadruped: idleCoroutine = StartCoroutine(IdleQuadrupedCoroutine()); break;
+                case PokemonType.Flying:    idleCoroutine = StartCoroutine(IdleFlyingCoroutine());    break;
             }
         }
 
-        /// <summary>Bípede: balanço lateral suave + leve bob vertical</summary>
+        public void StopIdle()
+        {
+            if (idleCoroutine != null)
+            {
+                StopCoroutine(idleCoroutine);
+                idleCoroutine = null;
+            }
+        }
+
         private IEnumerator IdleBipedCoroutine()
         {
             float time = 0f;
@@ -73,12 +73,8 @@ namespace BattleARena.Animation
                 if (!isPlayingAction)
                 {
                     time += Time.deltaTime * idleBobSpeed;
-
-                    // Bob vertical
                     float bobY = Mathf.Sin(time) * idleBobAmount;
                     transform.localPosition = originalLocalPosition + new Vector3(0, bobY, 0);
-
-                    // Inclinação lateral suave
                     float tilt = Mathf.Sin(time * 0.7f) * idleTiltAmount;
                     transform.localRotation = originalLocalRotation * Quaternion.Euler(0, 0, tilt);
                 }
@@ -86,7 +82,6 @@ namespace BattleARena.Animation
             }
         }
 
-        /// <summary>Quadrúpede: respiração (scale Y) + bob mais rasteiro</summary>
         private IEnumerator IdleQuadrupedCoroutine()
         {
             float time = 0f;
@@ -96,12 +91,8 @@ namespace BattleARena.Animation
                 if (!isPlayingAction)
                 {
                     time += Time.deltaTime * idleBobSpeed;
-
-                    // Respiração via scale Y sutil
                     float breathe = 1f + Mathf.Sin(time) * 0.03f;
-                    transform.localScale = new Vector3(baseScale.x, baseScale.y * breathe, baseScale.z);
-
-                    // Bob vertical pequeno
+                    transform.localScale    = new Vector3(baseScale.x, baseScale.y * breathe, baseScale.z);
                     float bobY = Mathf.Sin(time) * (idleBobAmount * 0.5f);
                     transform.localPosition = originalLocalPosition + new Vector3(0, bobY, 0);
                 }
@@ -109,7 +100,6 @@ namespace BattleARena.Animation
             }
         }
 
-        /// <summary>Voador: flutuação vertical + leve rotação</summary>
         private IEnumerator IdleFlyingCoroutine()
         {
             float time = 0f;
@@ -118,12 +108,8 @@ namespace BattleARena.Animation
                 if (!isPlayingAction)
                 {
                     time += Time.deltaTime * (idleBobSpeed * 0.8f);
-
-                    // Flutuação vertical maior
                     float floatY = Mathf.Sin(time) * (idleBobAmount * 3f);
                     transform.localPosition = originalLocalPosition + new Vector3(0, floatY, 0);
-
-                    // Leve inclinação de voo
                     float tilt = Mathf.Sin(time * 0.5f) * (idleTiltAmount * 0.5f);
                     transform.localRotation = originalLocalRotation * Quaternion.Euler(tilt, 0, 0);
                 }
@@ -144,7 +130,6 @@ namespace BattleARena.Animation
         private IEnumerator AttackCoroutine()
         {
             isPlayingAction = true;
-
             Vector3 startPos  = originalLocalPosition;
             Vector3 targetPos = originalLocalPosition + attackDirection * attackMoveDistance;
 
@@ -152,26 +137,21 @@ namespace BattleARena.Animation
             float holdDuration    = attackDuration * 0.1f;
             float returnDuration  = attackDuration * 0.5f;
 
-            // Fase 1: avança
             float elapsed = 0f;
             while (elapsed < advanceDuration)
             {
                 elapsed += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsed / advanceDuration);
-                transform.localPosition = Vector3.Lerp(startPos, targetPos, EaseOutCubic(t));
+                transform.localPosition = Vector3.Lerp(startPos, targetPos, EaseOutCubic(Mathf.Clamp01(elapsed / advanceDuration)));
                 yield return null;
             }
 
-            // Fase 2: pausa no impacto
             yield return new WaitForSeconds(holdDuration);
 
-            // Fase 3: volta
             elapsed = 0f;
             while (elapsed < returnDuration)
             {
                 elapsed += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsed / returnDuration);
-                transform.localPosition = Vector3.Lerp(targetPos, startPos, EaseInOutQuad(t));
+                transform.localPosition = Vector3.Lerp(targetPos, startPos, EaseInOutQuad(Mathf.Clamp01(elapsed / returnDuration)));
                 yield return null;
             }
 
@@ -180,7 +160,7 @@ namespace BattleARena.Animation
         }
 
         // -------------------------------------------------------
-        // Hit (toma dano)
+        // Hit
         // -------------------------------------------------------
 
         public void PlayHit()
@@ -192,45 +172,117 @@ namespace BattleARena.Animation
         private IEnumerator HitCoroutine()
         {
             isPlayingAction = true;
-
             Vector3 startPos  = originalLocalPosition;
             Vector3 recoilPos = originalLocalPosition - attackDirection * hitRecoilDistance;
 
             float recoilDuration = hitDuration * 0.3f;
             float returnDuration = hitDuration * 0.7f;
 
-            // Recua
             float elapsed = 0f;
             while (elapsed < recoilDuration)
             {
                 elapsed += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsed / recoilDuration);
                 transform.localPosition = Vector3.Lerp(startPos, recoilPos, EaseOutCubic(t));
-
-                // Flash vermelho piscando
                 float flash = Mathf.PingPong(elapsed * 20f, 1f);
-                GetComponentInChildren<Renderer>()?.material.SetColor(
-                    "_Color", Color.Lerp(Color.white, Color.red, flash * 0.5f)
-                );
+                GetComponentInChildren<Renderer>()?.material.SetColor("_Color", Color.Lerp(Color.white, Color.red, flash * 0.5f));
                 yield return null;
             }
 
-            // Volta
             elapsed = 0f;
             while (elapsed < returnDuration)
             {
                 elapsed += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsed / returnDuration);
-                transform.localPosition = Vector3.Lerp(recoilPos, startPos, EaseInOutQuad(t));
+                transform.localPosition = Vector3.Lerp(recoilPos, startPos, EaseInOutQuad(Mathf.Clamp01(elapsed / returnDuration)));
                 yield return null;
             }
 
             transform.localPosition = startPos;
-
-            // Restaura cor original
             GetComponentInChildren<Renderer>()?.material.SetColor("_Color", Color.white);
-
             isPlayingAction = false;
+        }
+
+        // -------------------------------------------------------
+        // Morte
+        // -------------------------------------------------------
+
+        public void PlayDeath(System.Action onComplete = null)
+        {
+            StartCoroutine(DeathCoroutine(onComplete));
+        }
+
+        private IEnumerator DeathCoroutine(System.Action onComplete)
+        {
+            // Para o idle
+            StopIdle();
+            isPlayingAction = true;
+
+            Vector3 startScale    = transform.localScale;
+            Vector3 startPosition = transform.localPosition;
+            Quaternion startRotation = transform.localRotation;
+
+            float elapsed = 0f;
+            float spinDuration  = deathDuration * 0.6f;
+            float fadeDuration  = deathDuration * 0.4f;
+
+            // Fase 1: gira e cai (tombe lateral)
+            Quaternion fallRotation = startRotation * Quaternion.Euler(0, 0, -90f);
+            Vector3 fallPosition    = startPosition - new Vector3(0, originalLocalScale.y * 0.5f, 0);
+
+            while (elapsed < spinDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / spinDuration);
+                transform.localRotation = Quaternion.Lerp(startRotation, fallRotation, EaseInOutQuad(t));
+                transform.localPosition = Vector3.Lerp(startPosition, fallPosition, EaseInOutQuad(t));
+
+                // Pisca vermelho durante a queda
+                float flash = Mathf.PingPong(elapsed * 15f, 1f);
+                foreach (var r in GetComponentsInChildren<Renderer>())
+                    r.material.SetColor("_Color", Color.Lerp(Color.white, Color.red, flash * 0.6f));
+
+                yield return null;
+            }
+
+            // Pausa breve no chão
+            yield return new WaitForSeconds(0.1f);
+
+            // Fase 2: some (shrink + fade)
+            elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / fadeDuration);
+                transform.localScale = Vector3.Lerp(startScale, Vector3.zero, EaseInOutQuad(t));
+                yield return null;
+            }
+
+            transform.localScale = Vector3.zero;
+            isPlayingAction = false;
+
+            // Desativa o objeto
+            gameObject.SetActive(false);
+
+            // Callback quando terminar
+            onComplete?.Invoke();
+        }
+
+        // -------------------------------------------------------
+        // Reset
+        // -------------------------------------------------------
+
+        public void ResetState()
+        {
+            StopAllCoroutines();
+            isPlayingAction       = false;
+            transform.localPosition = originalLocalPosition;
+            transform.localRotation = originalLocalRotation;
+            transform.localScale    = originalLocalScale;
+
+            foreach (var r in GetComponentsInChildren<Renderer>())
+                r.material.SetColor("_Color", Color.white);
+
+            StartIdle();
         }
 
         // -------------------------------------------------------
