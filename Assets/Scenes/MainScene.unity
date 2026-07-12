@@ -1875,6 +1875,59 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 764660418}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
+--- !u!1 &804945383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 804945385}
+  - component: {fileID: 804945384}
+  m_Layer: 0
+  m_Name: BattleAudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &804945384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804945383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c19c82c6d2bf7643bd34c4233d6ed7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleARena.Audio.BattleAudioController
+  musicaBatalha: {fileID: 8300000, guid: 79f564c282027374586754797927abd3, type: 3}
+  volumeMusica: 0.25
+  fadeInDuration: 2
+  fadeOutDuration: 1.5
+  somSurgimento: {fileID: 8300000, guid: 5808b3a0817c39646934b2c1c8a59b11, type: 3}
+  somDano: {fileID: 8300000, guid: 7cd3401e3e3800e4e873a72f110b2f0d, type: 3}
+  somVitoria: {fileID: 8300000, guid: 767a021b0e1b268449cd39f64d31a2d7, type: 3}
+  somDerrota: {fileID: 8300000, guid: 3f0f9ca3c464eff44bef84116c61ed65, type: 3}
+  volumeSFX: 0.9
+--- !u!4 &804945385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804945383}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &826868562
 GameObject:
   m_ObjectHideFlags: 0
@@ -5063,3 +5116,4 @@ SceneRoots:
   - {fileID: 2007363083}
   - {fileID: 764660419}
   - {fileID: 169235822}
+  - {fileID: 804945385}

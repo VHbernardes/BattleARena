@@ -41,10 +41,6 @@ namespace BattleARena.Animation
             StartIdle();
         }
 
-        // -------------------------------------------------------
-        // Idle
-        // -------------------------------------------------------
-
         public void StartIdle()
         {
             if (idleCoroutine != null) StopCoroutine(idleCoroutine);
@@ -117,10 +113,6 @@ namespace BattleARena.Animation
             }
         }
 
-        // -------------------------------------------------------
-        // Ataque
-        // -------------------------------------------------------
-
         public void PlayAttack()
         {
             if (isPlayingAction) return;
@@ -159,10 +151,6 @@ namespace BattleARena.Animation
             isPlayingAction = false;
         }
 
-        // -------------------------------------------------------
-        // Hit
-        // -------------------------------------------------------
-
         public void PlayHit()
         {
             if (isPlayingAction) return;
@@ -172,6 +160,11 @@ namespace BattleARena.Animation
         private IEnumerator HitCoroutine()
         {
             isPlayingAction = true;
+
+            // Som de dano
+            if (Audio.BattleAudioController.Instance != null)
+                Audio.BattleAudioController.Instance.PlayDano();
+
             Vector3 startPos  = originalLocalPosition;
             Vector3 recoilPos = originalLocalPosition - attackDirection * hitRecoilDistance;
 
@@ -202,10 +195,6 @@ namespace BattleARena.Animation
             isPlayingAction = false;
         }
 
-        // -------------------------------------------------------
-        // Morte
-        // -------------------------------------------------------
-
         public void PlayDeath(System.Action onComplete = null)
         {
             StartCoroutine(DeathCoroutine(onComplete));
@@ -213,19 +202,17 @@ namespace BattleARena.Animation
 
         private IEnumerator DeathCoroutine(System.Action onComplete)
         {
-            // Para o idle
             StopIdle();
             isPlayingAction = true;
 
-            Vector3 startScale    = transform.localScale;
-            Vector3 startPosition = transform.localPosition;
+            Vector3 startScale       = transform.localScale;
+            Vector3 startPosition    = transform.localPosition;
             Quaternion startRotation = transform.localRotation;
 
-            float elapsed = 0f;
-            float spinDuration  = deathDuration * 0.6f;
-            float fadeDuration  = deathDuration * 0.4f;
+            float elapsed      = 0f;
+            float spinDuration = deathDuration * 0.6f;
+            float fadeDuration = deathDuration * 0.4f;
 
-            // Fase 1: gira e cai (tombe lateral)
             Quaternion fallRotation = startRotation * Quaternion.Euler(0, 0, -90f);
             Vector3 fallPosition    = startPosition - new Vector3(0, originalLocalScale.y * 0.5f, 0);
 
@@ -236,7 +223,6 @@ namespace BattleARena.Animation
                 transform.localRotation = Quaternion.Lerp(startRotation, fallRotation, EaseInOutQuad(t));
                 transform.localPosition = Vector3.Lerp(startPosition, fallPosition, EaseInOutQuad(t));
 
-                // Pisca vermelho durante a queda
                 float flash = Mathf.PingPong(elapsed * 15f, 1f);
                 foreach (var r in GetComponentsInChildren<Renderer>())
                     r.material.SetColor("_Color", Color.Lerp(Color.white, Color.red, flash * 0.6f));
@@ -244,10 +230,8 @@ namespace BattleARena.Animation
                 yield return null;
             }
 
-            // Pausa breve no chão
             yield return new WaitForSeconds(0.1f);
 
-            // Fase 2: some (shrink + fade)
             elapsed = 0f;
             while (elapsed < fadeDuration)
             {
@@ -259,22 +243,14 @@ namespace BattleARena.Animation
 
             transform.localScale = Vector3.zero;
             isPlayingAction = false;
-
-            // Desativa o objeto
             gameObject.SetActive(false);
-
-            // Callback quando terminar
             onComplete?.Invoke();
         }
-
-        // -------------------------------------------------------
-        // Reset
-        // -------------------------------------------------------
 
         public void ResetState()
         {
             StopAllCoroutines();
-            isPlayingAction       = false;
+            isPlayingAction         = false;
             transform.localPosition = originalLocalPosition;
             transform.localRotation = originalLocalRotation;
             transform.localScale    = originalLocalScale;
@@ -284,10 +260,6 @@ namespace BattleARena.Animation
 
             StartIdle();
         }
-
-        // -------------------------------------------------------
-        // Easing
-        // -------------------------------------------------------
 
         private float EaseOutCubic(float t)  => 1f - Mathf.Pow(1f - t, 3f);
         private float EaseInOutQuad(float t) => t < 0.5f ? 2f * t * t : 1f - Mathf.Pow(-2f * t + 2f, 2f) / 2f;

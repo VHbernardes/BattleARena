@@ -57,7 +57,6 @@ namespace BattleARena.Battle
             isPlayerTurn     = true;
             isBattleRunning  = true;
 
-            // Mostra vantagem elemental inicial
             float mult = ElementalSystem.GetMultiplier(playerPokemonData.tipo, enemyPokemonData.tipo);
             string elementalHint = mult >= 2f
                 ? $"Voce tem vantagem elemental contra {enemyPokemonData.pokemonName}!"
@@ -75,22 +74,15 @@ namespace BattleARena.Battle
             battleHUD.ShowMessage(elementalHint);
         }
 
-        // -------------------------------------------------------
-        // Ações do Jogador
-        // -------------------------------------------------------
-
         public void PlayerQuickAttack()
         {
             if (!isPlayerTurn || isBattleOver || !isBattleRunning) return;
             int damage = CalculateDamageWithElemental(
                 playerPokemonData.quickAttackMinDamage,
                 playerPokemonData.quickAttackMaxDamage,
-                playerPokemonData.tipo,
-                enemyPokemonData.tipo,
-                playerPokemonData.criticalChance,
-                playerPokemonData.criticalMultiplier,
-                out bool isCrit,
-                out float elementalMult
+                playerPokemonData.tipo, enemyPokemonData.tipo,
+                playerPokemonData.criticalChance, playerPokemonData.criticalMultiplier,
+                out bool isCrit, out float elementalMult
             );
             StartCoroutine(PlayerAttackCoroutine(damage, isCrit, elementalMult, "Ataque Rapido"));
         }
@@ -101,19 +93,12 @@ namespace BattleARena.Battle
             int damage = CalculateDamageWithElemental(
                 playerPokemonData.strongAttackMinDamage,
                 playerPokemonData.strongAttackMaxDamage,
-                playerPokemonData.tipo,
-                enemyPokemonData.tipo,
-                playerPokemonData.criticalChance,
-                playerPokemonData.criticalMultiplier,
-                out bool isCrit,
-                out float elementalMult
+                playerPokemonData.tipo, enemyPokemonData.tipo,
+                playerPokemonData.criticalChance, playerPokemonData.criticalMultiplier,
+                out bool isCrit, out float elementalMult
             );
             StartCoroutine(PlayerAttackCoroutine(damage, isCrit, elementalMult, "Ataque Forte"));
         }
-
-        // -------------------------------------------------------
-        // Coroutines de Ataque
-        // -------------------------------------------------------
 
         private IEnumerator PlayerAttackCoroutine(int damage, bool isCrit, float elementalMult, string attackName)
         {
@@ -124,18 +109,12 @@ namespace BattleARena.Battle
             if (enemyAnimator != null) enemyAnimator.PlayHit();
 
             enemyCurrentHP = Mathf.Max(0, enemyCurrentHP - damage);
-
-            string msg = BuildAttackMessage(playerPokemonData.pokemonName, attackName, damage, isCrit, elementalMult);
-            battleHUD.ShowMessage(msg);
+            battleHUD.ShowMessage(BuildAttackMessage(playerPokemonData.pokemonName, attackName, damage, isCrit, elementalMult));
             battleHUD.UpdateHP(playerCurrentHP, enemyCurrentHP);
 
             yield return new WaitForSeconds(0.3f);
 
-            if (enemyCurrentHP <= 0)
-            {
-                StartCoroutine(EndBattleCoroutine(playerWon: true));
-                yield break;
-            }
+            if (enemyCurrentHP <= 0) { StartCoroutine(EndBattleCoroutine(playerWon: true)); yield break; }
 
             isPlayerTurn = false;
             StartCoroutine(EnemyTurnCoroutine());
@@ -156,12 +135,9 @@ namespace BattleARena.Battle
             if (useStrong)
             {
                 damage = CalculateDamageWithElemental(
-                    enemyPokemonData.strongAttackMinDamage,
-                    enemyPokemonData.strongAttackMaxDamage,
-                    enemyPokemonData.tipo,
-                    playerPokemonData.tipo,
-                    enemyPokemonData.criticalChance,
-                    enemyPokemonData.criticalMultiplier,
+                    enemyPokemonData.strongAttackMinDamage, enemyPokemonData.strongAttackMaxDamage,
+                    enemyPokemonData.tipo, playerPokemonData.tipo,
+                    enemyPokemonData.criticalChance, enemyPokemonData.criticalMultiplier,
                     out isCrit, out elementalMult
                 );
                 attackName = "Ataque Forte";
@@ -169,12 +145,9 @@ namespace BattleARena.Battle
             else
             {
                 damage = CalculateDamageWithElemental(
-                    enemyPokemonData.quickAttackMinDamage,
-                    enemyPokemonData.quickAttackMaxDamage,
-                    enemyPokemonData.tipo,
-                    playerPokemonData.tipo,
-                    enemyPokemonData.criticalChance,
-                    enemyPokemonData.criticalMultiplier,
+                    enemyPokemonData.quickAttackMinDamage, enemyPokemonData.quickAttackMaxDamage,
+                    enemyPokemonData.tipo, playerPokemonData.tipo,
+                    enemyPokemonData.criticalChance, enemyPokemonData.criticalMultiplier,
                     out isCrit, out elementalMult
                 );
                 attackName = "Ataque Rapido";
@@ -185,60 +158,40 @@ namespace BattleARena.Battle
             if (playerAnimator != null) playerAnimator.PlayHit();
 
             playerCurrentHP = Mathf.Max(0, playerCurrentHP - damage);
-
-            string msg = BuildAttackMessage(enemyPokemonData.pokemonName, attackName, damage, isCrit, elementalMult);
-            battleHUD.ShowMessage(msg);
+            battleHUD.ShowMessage(BuildAttackMessage(enemyPokemonData.pokemonName, attackName, damage, isCrit, elementalMult));
             battleHUD.UpdateHP(playerCurrentHP, enemyCurrentHP);
 
             yield return new WaitForSeconds(0.3f);
 
-            if (playerCurrentHP <= 0)
-            {
-                StartCoroutine(EndBattleCoroutine(playerWon: false));
-                yield break;
-            }
+            if (playerCurrentHP <= 0) { StartCoroutine(EndBattleCoroutine(playerWon: false)); yield break; }
 
             isPlayerTurn = true;
             battleHUD.SetButtonsInteractable(true);
             battleHUD.ShowMessage($"Sua vez! {playerPokemonData.pokemonName} HP: {playerCurrentHP}");
         }
 
-        // -------------------------------------------------------
-        // Cálculo de Dano com Elemental
-        // -------------------------------------------------------
-
         private int CalculateDamageWithElemental(
             int minDmg, int maxDmg,
-            ElementalSystem.PokemonType attacker,
-            ElementalSystem.PokemonType defender,
+            ElementalSystem.PokemonType attacker, ElementalSystem.PokemonType defender,
             float critChance, float critMult,
             out bool isCrit, out float elementalMult)
         {
             int baseDamage = Random.Range(minDmg, maxDmg + 1);
-
-            // Crítico
             isCrit = Random.value < critChance;
             if (isCrit) baseDamage = Mathf.RoundToInt(baseDamage * critMult);
-
-            // Elemental
             elementalMult = ElementalSystem.GetMultiplier(attacker, defender);
             baseDamage    = Mathf.RoundToInt(baseDamage * elementalMult);
-
             return baseDamage;
         }
 
         private string BuildAttackMessage(string attacker, string attackName, int damage, bool isCrit, float elementalMult)
         {
             string msg = $"{attacker} usou {attackName}! -{damage} HP";
-            if (isCrit)           msg += " [CRITICO!]";
+            if (isCrit)                msg += " [CRITICO!]";
             if (elementalMult >= 2f)   msg += " [SUPER EFICAZ!]";
             else if (elementalMult <= 0.5f) msg += " [Pouco eficaz...]";
             return msg;
         }
-
-        // -------------------------------------------------------
-        // Fim de Batalha
-        // -------------------------------------------------------
 
         private IEnumerator EndBattleCoroutine(bool playerWon)
         {
@@ -248,6 +201,15 @@ namespace BattleARena.Battle
 
             string loserName = playerWon ? enemyPokemonData.pokemonName : playerPokemonData.pokemonName;
             battleHUD.ShowMessage($"{loserName} foi derrotado!");
+
+            // Som de vitória ou derrota
+            if (Audio.BattleAudioController.Instance != null)
+            {
+                if (playerWon)
+                    Audio.BattleAudioController.Instance.PlayVitoria();
+                else
+                    Audio.BattleAudioController.Instance.PlayDerrota();
+            }
 
             bool deathComplete = false;
             PokemonAnimator loserAnimator = playerWon ? enemyAnimator : playerAnimator;
@@ -265,10 +227,6 @@ namespace BattleARena.Battle
                 ? $"VITORIA! {playerPokemonData.pokemonName} venceu!"
                 : $"DERROTA! {enemyPokemonData.pokemonName} venceu!");
         }
-
-        // -------------------------------------------------------
-        // Reiniciar
-        // -------------------------------------------------------
 
         public void RestartBattle()
         {

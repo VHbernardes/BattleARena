@@ -54,6 +54,11 @@ namespace BattleARena.AR
                     {
                         pokemonModel.transform.localScale = Vector3.zero;
                         pokemonModel.SetActive(true);
+
+                        // Som de surgimento
+                        if (Audio.BattleAudioController.Instance != null)
+                            Audio.BattleAudioController.Instance.PlaySurgimento();
+
                         if (spawnAnimation != null)
                             pokemonModel.GetComponent<MonoBehaviour>().StartCoroutine(
                                 spawnAnimation.PlaySpawnAnimation()
@@ -77,19 +82,17 @@ namespace BattleARena.AR
 
             if (pokemonModel != null)
             {
-                // ResetState restaura posição, rotação e scale originais
+                pokemonModel.SetActive(true);
+
                 if (pokemonAnimator != null)
                     pokemonAnimator.ResetState();
 
-                // Reseta animação de spawn
                 if (spawnAnimation != null)
                     spawnAnimation.ResetAnimation();
 
-                // Reseta cor de todos os renderers
                 foreach (var r in pokemonModel.GetComponentsInChildren<Renderer>())
                     r.material.SetColor("_Color", Color.white);
 
-                // Esconde o modelo
                 pokemonModel.transform.localScale = Vector3.zero;
                 pokemonModel.SetActive(false);
             }
