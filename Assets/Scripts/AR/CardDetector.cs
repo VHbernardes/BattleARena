@@ -80,22 +80,19 @@ namespace BattleARena.AR
         {
             hasBeenAssigned = false;
 
-            if (pokemonModel != null)
-            {
-                pokemonModel.SetActive(true);
+            if (pokemonModel == null) return;
 
-                if (pokemonAnimator != null)
-                    pokemonAnimator.ResetState();
+            // Reseta com o objeto ATIVO, e desativa por ultimo.
+            pokemonModel.SetActive(true);
 
-                if (spawnAnimation != null)
-                    spawnAnimation.ResetAnimation();
+            if (pokemonAnimator != null) pokemonAnimator.ResetState();
+            if (spawnAnimation  != null) spawnAnimation.ResetAnimation();
 
-                foreach (var r in pokemonModel.GetComponentsInChildren<Renderer>())
-                    r.material.SetColor("_Color", Color.white);
+            foreach (var r in pokemonModel.GetComponentsInChildren<Renderer>())
+                r.material.SetColor("_Color", Color.white);
 
-                pokemonModel.transform.localScale = Vector3.zero;
-                pokemonModel.SetActive(false);
-            }
+            pokemonModel.transform.localScale = Vector3.zero;
+            pokemonModel.SetActive(false);   // ok agora: o OnEnable religa tudo depois
         }
     }
 }

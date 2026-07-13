@@ -33,11 +33,22 @@ namespace BattleARena.Animation
         private bool isPlayingAction = false;
         private Coroutine idleCoroutine;
 
-        void Start()
+        void Awake()
         {
             originalLocalPosition = transform.localPosition;
             originalLocalRotation = transform.localRotation;
             originalLocalScale    = transform.localScale;
+            // StartIdle();
+        }
+
+        void OnEnable()
+        {
+            // Rede de seguranca: toda reativacao volta ao estado neutro.
+            // Coroutines sao destruidas ao desativar, entao a idle PRECISA
+            // ser reiniciada aqui, e nao no Reset.
+            transform.localPosition = originalLocalPosition;
+            transform.localRotation = originalLocalRotation;
+            isPlayingAction = false;
             StartIdle();
         }
 
@@ -250,7 +261,9 @@ namespace BattleARena.Animation
         public void ResetState()
         {
             StopAllCoroutines();
-            isPlayingAction         = false;
+            idleCoroutine   = null;      // <<< o handle estava ficando pendurado
+            isPlayingAction = false;
+
             transform.localPosition = originalLocalPosition;
             transform.localRotation = originalLocalRotation;
             transform.localScale    = originalLocalScale;
@@ -258,7 +271,7 @@ namespace BattleARena.Animation
             foreach (var r in GetComponentsInChildren<Renderer>())
                 r.material.SetColor("_Color", Color.white);
 
-            StartIdle();
+            // StartIdle() removido: quem cuida disso agora e o OnEnable()
         }
 
         private float EaseOutCubic(float t)  => 1f - Mathf.Pow(1f - t, 3f);

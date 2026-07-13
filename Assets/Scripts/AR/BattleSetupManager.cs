@@ -89,9 +89,8 @@ namespace BattleARena.AR
             battleHUD.SetButtonsInteractable(false);
             battleHUD.ShowMessage("Aponte a camera para a sua carta!");
 
-            // FindObjectsOfType está deprecado nas versões recentes da Unity.
-            foreach (var detector in FindObjectsByType<CardDetector>(FindObjectsSortMode.None))
-                detector.Reset();
+            foreach (var d in FindObjectsByType<CardDetector>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                d.Reset();
         }
     }
 }
