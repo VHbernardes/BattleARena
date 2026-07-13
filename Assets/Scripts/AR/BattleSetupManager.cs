@@ -23,6 +23,11 @@ namespace BattleARena.AR
             Instance = this;
         }
 
+        void OnDestroy()
+        {
+            if (Instance == this) Instance = null;
+        }
+
         void Start()
         {
             battleHUD.ShowScanScreen(true);
@@ -74,11 +79,18 @@ namespace BattleARena.AR
             enemyAnimator  = null;
             battleStarted  = false;
 
+            // A cena não é recarregada entre partidas, então o Start() do
+            // BattleAudioController não roda de novo. Este é o gatilho que
+            // religa a BGM (do início, com fade-in) a cada nova batalha.
+            if (Audio.BattleAudioController.Instance != null)
+                Audio.BattleAudioController.Instance.RestartBattleMusic();
+
             battleHUD.ShowScanScreen(true);
             battleHUD.SetButtonsInteractable(false);
             battleHUD.ShowMessage("Aponte a camera para a sua carta!");
 
-            foreach (var detector in FindObjectsOfType<CardDetector>())
+            // FindObjectsOfType está deprecado nas versões recentes da Unity.
+            foreach (var detector in FindObjectsByType<CardDetector>(FindObjectsSortMode.None))
                 detector.Reset();
         }
     }

@@ -4,9 +4,13 @@ using System.Collections;
 namespace BattleARena.Audio
 {
     /// <summary>
-    /// Controla todo o áudio da cena de batalha.
+    /// Controla todo o áudio da cena de batalha (MainScene).
     /// Música de fundo em loop com volume baixo (ambiente),
     /// e SFX para surgimento, dano, vitória e derrota.
+    ///
+    /// A cena NÃO é recarregada entre partidas: BattleManager.RestartBattle()
+    /// apenas reseta o estado via BattleSetupManager.ResetSetup(). Por isso o
+    /// reinício da música depende de uma chamada explícita a RestartBattleMusic().
     /// </summary>
     public class BattleAudioController : MonoBehaviour
     {
@@ -28,6 +32,10 @@ namespace BattleARena.Audio
         private AudioSource musicSource;
         private AudioSource sfxSource;
 
+        // Handle único das coroutines de música. Garante que fade-in e fade-out
+        // nunca disputem musicSource.volume ao mesmo tempo.
+        private Coroutine musicRoutine;
+
         void Awake()
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
@@ -46,37 +54,90 @@ namespace BattleARena.Audio
             sfxSource.playOnAwake = false;
         }
 
+        void OnDestroy()
+        {
+            if (Instance == this) Instance = null;
+        }
+
         void Start()
         {
-            StartCoroutine(FadeInMusic());
+            RestartBattleMusic();
+        }
+
+        // ---------- Música ----------
+
+        /// <summary>
+        /// Reinicia a BGM do zero, com fade-in. Idempotente: pode ser chamado
+        /// quantas vezes for preciso sem sobrepor áudio nem duplicar coroutines.
+        /// Chamado no Start() e por BattleManager.RestartBattle().
+        /// </summary>
+        public void RestartBattleMusic()
+        {
+            if (musicaBatalha == null) return;
+
+            StopMusicRoutine();
+
+            musicSource.Stop();          // limpa o estado deixado pelo fade-out
+            musicSource.clip   = musicaBatalha;
+            musicSource.time   = 0f;     // volta ao início do clipe
+            musicSource.volume = 0f;
+            musicSource.loop   = true;
+
+            musicRoutine = StartCoroutine(FadeInMusic());
+        }
+
+        /// <summary>Fade-out e parada da música. Seguro chamar se já estiver parada.</summary>
+        public void StopBattleMusic()
+        {
+            if (!musicSource.isPlaying) return;
+
+            StopMusicRoutine();
+            musicRoutine = StartCoroutine(FadeOutMusic());
+        }
+
+        private void StopMusicRoutine()
+        {
+            if (musicRoutine != null)
+            {
+                StopCoroutine(musicRoutine);
+                musicRoutine = null;
+            }
         }
 
         private IEnumerator FadeInMusic()
         {
-            if (musicaBatalha == null) yield break;
             musicSource.Play();
+
             float elapsed = 0f;
             while (elapsed < fadeInDuration)
             {
-                elapsed += Time.deltaTime;
+                elapsed += Time.unscaledDeltaTime;
                 musicSource.volume = Mathf.Lerp(0f, volumeMusica, elapsed / fadeInDuration);
                 yield return null;
             }
+
             musicSource.volume = volumeMusica;
+            musicRoutine = null;
         }
 
-        public IEnumerator FadeOutMusic()
+        private IEnumerator FadeOutMusic()
         {
             float startVolume = musicSource.volume;
             float elapsed     = 0f;
+
             while (elapsed < fadeOutDuration)
             {
-                elapsed += Time.deltaTime;
+                elapsed += Time.unscaledDeltaTime;
                 musicSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / fadeOutDuration);
                 yield return null;
             }
+
+            musicSource.volume = 0f;
             musicSource.Stop();
+            musicRoutine = null;
         }
+
+        // ---------- SFX ----------
 
         public void PlaySurgimento()
         {
@@ -92,14 +153,14 @@ namespace BattleARena.Audio
 
         public void PlayVitoria()
         {
-            StartCoroutine(FadeOutMusic());
+            StopBattleMusic();
             if (somVitoria != null)
                 sfxSource.PlayOneShot(somVitoria, volumeSFX);
         }
 
         public void PlayDerrota()
         {
-            StartCoroutine(FadeOutMusic());
+            StopBattleMusic();
             if (somDerrota != null)
                 sfxSource.PlayOneShot(somDerrota, volumeSFX);
         }
